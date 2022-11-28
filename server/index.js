@@ -1,7 +1,8 @@
 // Imports
 var keyUtils = require('./Utils/keyUtils.js');
-var dataUtils = require('./Utils/dataUtils.js');
-var Example = require('./Utils/Example.js');
+var Burnup = require('./Utils/burnup.js');
+var Tools = require('./Utils/tools.js');
+var Cycletime = require ('./Utils/cycletime.js');
 
 
 // Required libraries and assets
@@ -82,8 +83,8 @@ app.get("/user-velocity", async (req, res) => {
             data = JSON.parse(body);
             // res.json(data);
             console.log('zube call complete');
-            // res.json(dataUtils.functions.get_user_velocity_api_res(data));\
-            res.json(Example.functions.example(data));
+            // res.json(data);
+            res.json(Cycletime.functions.get_cycle_time_response(data));
         }
     }
     
@@ -108,7 +109,7 @@ app.get("/testAPI", async (req, res) => {
     // }
     
     // request(options, callback);
-    res.json(await axios.get('http://localhost:3001/testEndpoint').data);
+    res.json(Tools.date_functions.subtract_dates('2022-11-23', '2013-10-04'));
 
 });
 
@@ -120,16 +121,232 @@ app.get("/testEndpoint", async (req, res) => {
             "prop2": "more sample aging",
             "prop3": "even more sample aging"
         },
-        "cycletime": {
-            "prop1": "sample cycle",
-            "prop2": "more sample cycle",
-            "prop3": "even more sample cycle"
-        },
-        "burnupburndown": {
-            "prop1": "sample burn",
-            "prop2": "more sample burn",
-            "prop3": "even more sample burn"
-        },
+        "cycletime": [
+          {
+              "sprint_name": "Sprint 3",
+              "cycle_time": 9
+          },
+          {
+              "sprint_name": "Sprint2",
+              "cycle_time": 8.4
+          },
+          {
+              "sprint_name": "Analysis1",
+              "cycle_time": 13.375
+          }
+      ],
+        "burnupburndown":[
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-10-21",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-10-24",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-10-25",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-10-26",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-10-27",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-11-01",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-11-04",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-11-07",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-11-08",
+              "points-done": 0,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Sprint 3",
+              "points-in-sprint": 40,
+              "date": "2022-11-23",
+              "points-done": 40,
+              "points-remaining": 0
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-10-21",
+              "points-done": 0,
+              "points-remaining": 33
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-10-24",
+              "points-done": 0,
+              "points-remaining": 33
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-10-25",
+              "points-done": 0,
+              "points-remaining": 33
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-10-26",
+              "points-done": 0,
+              "points-remaining": 33
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-10-27",
+              "points-done": 0,
+              "points-remaining": 33
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-11-01",
+              "points-done": 0,
+              "points-remaining": 33
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-11-04",
+              "points-done": 8,
+              "points-remaining": 25
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-11-07",
+              "points-done": 26,
+              "points-remaining": 7
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-11-08",
+              "points-done": 33,
+              "points-remaining": 0
+          },
+          {
+              "sprint-id": "Sprint2",
+              "points-in-sprint": 33,
+              "date": "2022-11-23",
+              "points-done": 33,
+              "points-remaining": 0
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-10-21",
+              "points-done": 11,
+              "points-remaining": 40
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-10-24",
+              "points-done": 27,
+              "points-remaining": 24
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-10-25",
+              "points-done": 35,
+              "points-remaining": 16
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-10-26",
+              "points-done": 46,
+              "points-remaining": 5
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-10-27",
+              "points-done": 46,
+              "points-remaining": 5
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-11-01",
+              "points-done": 51,
+              "points-remaining": 0
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-11-04",
+              "points-done": 51,
+              "points-remaining": 0
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-11-07",
+              "points-done": 51,
+              "points-remaining": 0
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-11-08",
+              "points-done": 51,
+              "points-remaining": 0
+          },
+          {
+              "sprint-id": "Analysis1",
+              "points-in-sprint": 51,
+              "date": "2022-11-23",
+              "points-done": 51,
+              "points-remaining": 0
+          }
+      ],
         "velocity": {
             "prop1": "sample velocity",
             "prop2": "more sample velocity",
