@@ -12,7 +12,7 @@ const Tools = require('./Tools.js');
 var methods = {
 
     get_projects: function(data) {
-        var length = data.pagination.total;
+        var num_of_cards = (data.pagination.total <= 100) ? data.pagination.total : 100;
         var id;
         var project_ids = [];
         for (i = 0; i < length; i++) {
@@ -28,7 +28,7 @@ var methods = {
     // ONLY WORKS when sprint.title is input for the sprint_name!!!!
     get_sprint_points: function(data, sprint_name) {
         const info = data;
-        const num_of_cards = data.pagination.total;
+        const num_of_cards = (data.pagination.total <= 100) ? data.pagination.total : 100;
         var total_points = 0;
         for (j = 0; j < num_of_cards; j++) {
             if (info.data[j].sprint_id != null) {
@@ -47,7 +47,7 @@ var methods = {
         // We add its points to the total
         var complete_points = 0;
 
-        var num_of_cards = data.pagination.total;
+        var num_of_cards = (data.pagination.total <= 100) ? data.pagination.total : 100;
 
         for (l = 0; l < num_of_cards; l++) {
             var temp = data.data[l];
@@ -69,8 +69,8 @@ var methods = {
    
     get_burnup_burndown_response: function(data) {
         // we loop through the date array, and create an object for each sprint_id, for each date in that array.  
-        var response = [];    
-        var length = data.pagination.total;      
+        var response = [];
+        var length = (data.pagination.total <= 100) ? data.pagination.total : 100;
         var date_array_temp = [];
         var date_array = [];
         var sprint_id_array = [];

@@ -9,7 +9,7 @@ var methods = {
 
         var counter = 0;
         var result = 0;
-        var num_of_cards = data.pagination.total;
+        var num_of_cards = (data.pagination.total <= 100) ? data.pagination.total : 100;
 
         for (cycletime_1 = 0; cycletime_1 < num_of_cards; cycletime_1++) {
 
@@ -33,7 +33,7 @@ var methods = {
         var sprint_array = [];
         var response = [];
 
-        var num_of_cards = data.pagination.total;
+        var num_of_cards = (data.pagination.total <= 100) ? data.pagination.total : 100;
 
         // Get a list of unique sprint_names
         for (i = 0; i < num_of_cards; i++) {
@@ -47,7 +47,9 @@ var methods = {
         for (i = 0; i < sprint_array.length; i++) {
             response[i] = {
                 "sprint_name": sprint_array[i],
-                "cycle_time": this.get_avg_time(data, sprint_array[i])
+                "cycle_time": this.get_avg_time(data, sprint_array[i]),
+                "project_id": Tools.other_functions.get_proj_from_sprint(data, sprint_array[i]),
+                "length": sprint_array.length
             }
         }
 
