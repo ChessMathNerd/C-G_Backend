@@ -85,8 +85,6 @@ var methods = {
 
         }
 
-        console.log(response);
-
         return response;
 
     }

@@ -4,6 +4,7 @@ var Burnup = require('./Utils/burnup.js');
 var Tools = require('./Utils/tools.js');
 var Cycletime = require ('./Utils/cycletime.js');
 var Velocity = require ('./Utils/velocity.js');
+var Aging = require ('./Utils/agingcharts.js');
 
 
 // Required libraries and assets
@@ -54,13 +55,8 @@ app.get("/data", async (req, res) => {
       if (!error && response.statusCode == 200) {
           data = JSON.parse(body);
           // console.log(data);
-          console.log('zube call complete');
           // res.json(data);
-          result.agingcharts = {
-            "prop1": "sample aging",
-            "prop2": "more sample aging",
-            "prop3": "even more sample aging"
-          }
+          result.agingcharts = Aging.functions.get_aging_charts_response(data);
           result.cycletime = Cycletime.functions.get_cycle_time_response(data);
           result.velocity = Velocity.functions.get_velocity_response(data);
           result.burnupburndown = Burnup.functions.get_burnup_burndown_response(data);
@@ -68,8 +64,6 @@ app.get("/data", async (req, res) => {
           res.json(result);
       }
   }
-  
-  console.log('zube call started');
   request(options, callback);
 
 });
@@ -91,12 +85,10 @@ app.get("/proj_data", async (req, res) => {
       if (!error && response.statusCode == 200) {
           data = JSON.parse(body);
           // console.log(data);
-          console.log('zube call complete');
           // res.json(data);
           res.json(Tools.other_functions.get_proj_array(data));
       }
   }
-  console.log('zube call started');
   request(options, callback);
 });
 
@@ -127,8 +119,8 @@ app.get("/user-velocity", async (req, res) => {
             data = JSON.parse(body);
             // res.json(data);
             console.log('zube call complete');
-            // res.json(data);
-            res.json(Cycletime.functions.get_cycle_time_response(data));
+            res.json(data);
+            // res.json(Aging.functions.get_aging_charts_response(data));
         }
     }
     
